@@ -40,12 +40,25 @@ public:
         return vocabulary.at(key);
     }
 
+    std::string lookForKeyByValue(char value){
+        auto iter = vocabulary.begin();
+        std::string key;
+        for(int index = 0; index < vocabulary.size(); index++){
+            if(value == iter->second){
+                key = iter->first;
+                break;
+            }
+            iter++;
+        }
+        return key;
+    }
+
     void encode(std::string filename){
         std::string data = getDataFromFile(filename);
-        char *data_in_chars;
+        char *data_in_chars = new char[data.size()];
         strcpy(data_in_chars, data.c_str());
         for(int index = 0; index < data.size(); index++){
-
+            std::cout << lookForKeyByValue(data_in_chars[index]) << " ";
         }
     }
 
@@ -56,10 +69,11 @@ public:
         strcpy(data_in_chars, data.c_str());
         auto iter = vocabulary.begin();
         for(int index = 0; index < data.size(); index++){
-            while(data_in_chars[index] != ' ' && data_in_chars[index] != '\n'){
+            while(data_in_chars[index] != ' ' && data_in_chars[index] != '\n' && data_in_chars[index] != '\\'){
                 current_signal += data_in_chars[index];
                 index++;
             }
+            iter = vocabulary.begin();
             while(iter != vocabulary.end()){
                 if(iter->first == current_signal){
                     std::cout << iter->second << "";
@@ -67,9 +81,7 @@ public:
                 }
                 iter++;
             }
-            if(data_in_chars[index] == ' '){
-                std::cout << " ";
-            }
+            current_signal = "";
         }
     }
 
@@ -99,8 +111,7 @@ public:
 
 int main() {
     Morse_library *library = new Morse_library();
-    std::cout << library->getDataFromFile("Morse.txt") << std::endl;
-    library->createFile("EncryptedMorse.txt");
+//    library->encode("Morse.txt");
     library->decode("EncryptedMorse.txt");
     return 0;
 }
