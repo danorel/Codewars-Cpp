@@ -10,18 +10,19 @@ void showTwoDimensionArrayOnHeap(int **, int, int);
 int **allocateTwoDimensionArrayOnHeapUsingMalloc(int, int);
 void destroyTwoDimensionArrayOnHeapUsingFree(int **, int, int);
 
-
 int main() {
-    int row = 2;
-    int col = 3;
-    int ** array = allocateTwoDimensionArrayOnHeapUsingNew(row, col);
-    for(int r_counter = 0; r_counter < row; r_counter++){
-        for(int c_counter = 0; c_counter < col; c_counter++){
-            array[r_counter][c_counter] = r_counter + c_counter;
-        }
-    }
-    showTwoDimensionArrayOnHeap(array, row, col);
-    destroyTwoDimensionArrayOnHeapUsingFree(array, row, col);
+//    int row = 2;
+//    int col = 3;
+//    int ** array = allocateTwoDimensionArrayOnHeapUsingNew(row, col);
+//    for(int r_counter = 0; r_counter < row; r_counter++){
+//        for(int c_counter = 0; c_counter < col; c_counter++){
+//            array[r_counter][c_counter] = r_counter + c_counter;
+//        }
+//    }
+//    showTwoDimensionArrayOnHeap(array, row, col);
+//    destroyTwoDimensionArrayOnHeapUsingFree(array, row, col);
+//
+
     return 0;
 }
 
